@@ -10,7 +10,6 @@ router.route('/').post((req,res) => {
   let data = req.body.updates;
   const addData = async (data) => {
     fsPromises.readFile(path.join(__dirname,'data','personInfo.txt'),'utf-8').then((informationArray) => {
-      // console.log(informationArray);
       informationArray = informationArray.split(',');
       
       const personObj = {
