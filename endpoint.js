@@ -39,6 +39,6 @@ router.route('/').post((req,res) => {
 
 
 router.route('/').get((req,res) => {
-  res.json({message:"what da gomma"})
+  res.json({message:"why u here"})
 })
 module.exports = router;
