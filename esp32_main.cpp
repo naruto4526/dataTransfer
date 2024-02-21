@@ -48,7 +48,7 @@ void loop() {
     delay(3000);
     button = digitalRead(23);
   }
-
+  else Serial.println("Connect pin 23 to Vcc");
   if(button == 1) {
     sendData( ); //when button pressed, get ir and red, and send data to c
   }  
