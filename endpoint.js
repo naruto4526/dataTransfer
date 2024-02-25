@@ -6,7 +6,7 @@ const path = require('path');
 router = express.Router();
 
 
-router.route('/').post((req,res) => {
+router.route('/receive').post((req,res) => {
   let data = req.body.updates;
   const addData = async (data) => {
     fsPromises.readFile(path.join(__dirname,'data','personInfo.txt'),'utf-8').then((informationArray) => {

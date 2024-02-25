@@ -8,7 +8,7 @@ const char *ssid =  "naruto";
 const char *pass =  "narutouzumaki";
 char jsonBuffer[6000] = "{\"updates\":[";
 WiFiClient client;
-char server[] = "https://key-piglet-whole.ngrok-free.app/";
+char server[] = "https://key-piglet-whole.ngrok-free.app";
 unsigned long deltaT = 1;
 
 
@@ -60,7 +60,7 @@ void updatesJson(char* jsonBuffer,uint32_t x, uint32_t y){
   strcat(jsonBuffer,"{");
  
   size_t lengthT;
-
+  char temp[9];
   strcat(jsonBuffer, "\"IR\":");//"{delta_t:1,field1:800,field2:700},"  
   lengthT = String(x).length();
   String(x).toCharArray(temp,lengthT+1);
@@ -82,15 +82,15 @@ void httpRequest(char* data) {
   Serial.println(data);
  
   if (client.connect(server, 80)) {
-    client.println("POST HTTP/1.1"); // 
-    client.println("Host: https://key-piglet-whole.ngrok-free.app/");
+    client.println("POST /receive HTTP/1.1"); // 
+    client.println("Host: key-piglet-whole.ngrok-free.app");
     client.println("Content-Type: application/json");
-    client.println("ngrok-skip-browser-warning: true");
+    client.println("Ngrok-Skip-Browser-Warning: true");
     client.println();
     client.println(data);
   }
   else {
-    Serial.println("Failure: Failed to connect to ThingSpeak");
+    Serial.println("Connection to server failed.\n");
   }
   delay(250); 
   client.parseFloat();
